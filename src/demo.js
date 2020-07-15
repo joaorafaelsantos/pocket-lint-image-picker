@@ -49,12 +49,7 @@ class Demo extends Component {
         <h1>React Image Picker</h1>
         <h3>Single Select</h3>
         <ImagePicker
-          images={imageList.map((image, i) => ({
-            src: image.src,
-            alt: image.alt,
-            title: image.title,
-            value: i,
-          }))}
+          images={imageList.map((image, i) => ({ ...image, value: i }))}
           onPick={this.onPickImage.bind(this)}
         />
         <textarea
@@ -66,12 +61,7 @@ class Demo extends Component {
 
         <h3>Multiple Select</h3>
         <ImagePicker
-          images={imageList.map((image, i) => ({
-            src: image.src,
-            alt: image.alt,
-            title: image.title,
-            value: i,
-          }))}
+          images={imageList.map((image, i) => ({ ...image, value: i }))}
           onPick={this.onPickImages.bind(this)}
           multiple
         />
