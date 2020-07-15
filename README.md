@@ -1,25 +1,17 @@
-[![NPM](https://img.shields.io/npm/v/react-image-picker.svg)](https://www.npmjs.com/package/react-image-picker)
-[![npm](https://img.shields.io/npm/dt/react-image-picker.svg)](https://www.npmjs.com/package/react-image-picker)
-[![npm](https://img.shields.io/npm/dm/react-image-picker.svg)](https://www.npmjs.com/package/react-image-picker)
+[![NPM](https://img.shields.io/npm/v/react-image-picker.svg)](https://www.npmjs.com/package/pocket-lint-image-picker)
+[![npm](https://img.shields.io/npm/dt/react-image-picker.svg)](https://www.npmjs.com/package/pocket-lint-image-picker)
+[![npm](https://img.shields.io/npm/dm/react-image-picker.svg)](https://www.npmjs.com/package/pocket-lint-image-picker)
 [![npm](https://img.shields.io/npm/l/react-image-picker.svg)](http://opensource.org/licenses/MIT)
 
 # Pocket-lint Image Picker
 
+Forked from: [https://github.com/bagongkia/react-image-picker](https://github.com/bagongkia/react-image-picker)
 The image picker is used for selecting single or multiple images from gallery.
-
-[Live Demo](https://bagongkia.github.io/react-image-picker/)
-
-## Features
-
-- jQuery Free
-- Single or multiple images selection
-- Styling (...in progress)
-- ...
 
 ## Installation
 
 ```
-npm install react-image-picker
+npm install pocket-lint-image-picker
 ```
 
 ### Examples
@@ -38,7 +30,24 @@ import img2 from "./images/kitten/201.jpg";
 import img3 from "./images/kitten/202.jpg";
 import img4 from "./images/kitten/203.jpg";
 
-const imageList = [img1, img2, img3, img4];
+const imageList = [
+  {
+    src: img1,
+    title: "Image 1",
+  },
+  {
+    src: img2,
+    alt: "Image 2",
+  },
+  {
+    src: img3,
+    alt: "Image 3",
+    title: "Image 3",
+  },
+  {
+    src: img4,
+  },
+];
 
 class App extends Component {
   constructor(props) {
@@ -57,7 +66,7 @@ class App extends Component {
     return (
       <div>
         <ImagePicker
-          images={imageList.map((image, i) => ({ src: image, value: i }))}
+          images={imageList.map((image, i) => ({ ...image, value: i }))}
           onPick={this.onPick}
         />
         <button type="button" onClick={() => console.log(this.state.image)}>
