@@ -1,29 +1,46 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
-import ImagePicker from './react-image-picker'
+import React, { Component } from "react";
+import { render } from "react-dom";
+import ImagePicker from "./react-image-picker";
 
-import img1 from './assets/images/kitten/200.jpg'
-import img2 from './assets/images/kitten/201.jpg'
-import img3 from './assets/images/kitten/202.jpg'
-import img4 from './assets/images/kitten/203.jpg'
+import img1 from "./assets/images/kitten/200.jpg";
+import img2 from "./assets/images/kitten/201.jpg";
+import img3 from "./assets/images/kitten/202.jpg";
+import img4 from "./assets/images/kitten/203.jpg";
 
-const imageList = [img1, img2, img3, img4]
+const imageList = [
+  {
+    src: img1,
+    title: "Image 1",
+  },
+  {
+    src: img2,
+    alt: "Image 2",
+  },
+  {
+    src: img3,
+    alt: "Image 3",
+    title: "Image 3",
+  },
+  {
+    src: img4,
+  },
+];
 
 class Demo extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       image: null,
-      images: []
-    }
+      images: [],
+    };
   }
 
   onPickImage(image) {
-    this.setState({image})
+    this.setState({ image });
   }
 
   onPickImages(images) {
-    this.setState({images})
+    this.setState({ images });
   }
 
   render() {
@@ -31,22 +48,42 @@ class Demo extends Component {
       <div>
         <h1>React Image Picker</h1>
         <h3>Single Select</h3>
-        <ImagePicker 
-          images={imageList.map((image, i) => ({src: image, value: i}))}
+        <ImagePicker
+          images={imageList.map((image, i) => ({
+            src: image.src,
+            alt: image.alt,
+            title: image.title,
+            value: i,
+          }))}
           onPick={this.onPickImage.bind(this)}
         />
-        <textarea rows="4" cols="100" value={this.state.image && JSON.stringify(this.state.image)} disabled/>
-        
+        <textarea
+          rows="4"
+          cols="100"
+          value={this.state.image && JSON.stringify(this.state.image)}
+          disabled
+        />
+
         <h3>Multiple Select</h3>
-        <ImagePicker 
-          images={imageList.map((image, i) => ({src: image, value: i}))}
+        <ImagePicker
+          images={imageList.map((image, i) => ({
+            src: image.src,
+            alt: image.alt,
+            title: image.title,
+            value: i,
+          }))}
           onPick={this.onPickImages.bind(this)}
           multiple
         />
-        <textarea rows="4" cols="100" value={this.state.images && JSON.stringify(this.state.images)} disabled/>
+        <textarea
+          rows="4"
+          cols="100"
+          value={this.state.images && JSON.stringify(this.state.images)}
+          disabled
+        />
       </div>
-    )
+    );
   }
 }
 
-render(<Demo/>, document.querySelector('#root'))
+render(<Demo />, document.querySelector("#root"));
